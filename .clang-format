@@ -6,3 +6,5 @@ AlignTrailingComments: true
 AlignOperands: true
 AlignConsecutiveDeclarations: Consecutive
 AlignAfterOpenBracket: true
+AllowShortFunctionsOnASingleLine: None
+AllowShortBlocksOnASingleLine: Never

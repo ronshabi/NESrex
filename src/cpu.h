@@ -5,7 +5,7 @@
 #include <cstdint>
 
 class cpu {
-  public:
+public:
     uint8_t x = 0;
     uint8_t y = 0;
     uint8_t a = 0;
@@ -22,22 +22,24 @@ class cpu {
 
     void execute(uint8_t opcode);
 
-  private:
-    uint16_t                    m_pc = 0;
-    uint16_t                    m_sp = 0;
+private:
+    uint16_t m_pc = 0;
+    uint16_t m_sp = 0;
     std::array<uint8_t, 0xffff> m_memory;
 
-    inline uint8_t  getImmediateByte();
+    inline uint8_t getImmediateByte();
     inline uint16_t getImmediateWord();
 
     inline uint8_t deref(uint16_t address);
     inline uint8_t derefImmediateByte();
     inline uint8_t derefZeroPage();
     inline uint8_t derefZeroPageX();
-	inline uint16_t derefAbsoluteX();
-	inline uint16_t derefAbsoluteY();
+    inline uint16_t derefAbsoluteX();
+    inline uint16_t derefAbsoluteY();
+    inline uint8_t derefIndirectX();
+    inline uint8_t derefIndirectY();
 
-	inline void    setFlag(bool &flag, bool to);
+    inline void setFlag(bool& flag, bool to);
 };
 
 #endif

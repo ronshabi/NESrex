@@ -13,4 +13,4 @@ add_executable(
         src/instruction.h
         src/instructions.cpp
         src/instructions.h
-)
+        src/ines.cpp src/ines.h)
