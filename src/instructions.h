@@ -4,7 +4,7 @@
 #include "instruction.h"
 
 namespace instructions {
-	constexpr static instruction AND_IMM = instruction (0x29, 2, 2, "AND");
+	constexpr instruction AND_IMM = instruction (0x29, 2, 2, "AND");
 };
 
 #endif //NES_INSTRUCTIONS_H
