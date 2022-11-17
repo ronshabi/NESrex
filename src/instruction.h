@@ -1,5 +1,5 @@
-#ifndef INSTRUCTION_H
-#define INSTRUCTION_H
+#ifndef NESREX_INSTRUCTION_H
+#define NESREX_INSTRUCTION_H
 
 #include <cstdint>
 #include <string>
@@ -15,4 +15,4 @@ struct instruction {
 		  opcode{p_opcode}, bytes{p_bytes}, cycles{p_cycles}, name{p_name} { };
 };
 
-#endif //INSTRUCTION_H
+#endif //NESREX_INSTRUCTION_H

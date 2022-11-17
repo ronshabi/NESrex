@@ -1,0 +1,8 @@
+BasedOnStyle: LLVM
+UseTab: Never
+IndentWidth: 4
+ColumnLimit: 80
+AlignTrailingComments: true
+AlignOperands: true
+AlignConsecutiveDeclarations: Consecutive
+AlignAfterOpenBracket: true

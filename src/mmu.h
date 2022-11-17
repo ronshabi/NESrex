@@ -1,8 +1,8 @@
-#ifndef MMU_H
-#define MMU_H
+#ifndef NESREX_MMU_H
+#define NESREX_MMU_H
 
 class mmu {
 
 };
 
-#endif //MMU_H
+#endif //NESREX_MMU_H
