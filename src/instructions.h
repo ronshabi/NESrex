@@ -12,6 +12,6 @@ constexpr instruction AND_ABX = instruction(0x3d, 3, 4, "AND");
 constexpr instruction AND_ABY = instruction(0x39, 3, 4, "AND");
 constexpr instruction AND_IDX = instruction(0x21, 2, 6, "AND");
 constexpr instruction AND_IDY = instruction(0x31, 2, 5, "AND");
-};
+}; // namespace instructions
 
-#endif //NESREX_INSTRUCTIONS_H
+#endif // NESREX_INSTRUCTIONS_H
