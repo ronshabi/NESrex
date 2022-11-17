@@ -34,7 +34,10 @@ class cpu {
     inline uint8_t derefImmediateByte();
     inline uint8_t derefZeroPage();
     inline uint8_t derefZeroPageX();
-    inline void    setFlag(bool &flag, bool to);
+	inline uint16_t derefAbsoluteX();
+	inline uint16_t derefAbsoluteY();
+
+	inline void    setFlag(bool &flag, bool to);
 };
 
 #endif
