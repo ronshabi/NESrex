@@ -12,6 +12,7 @@ public:
 private:
     std::string m_path;
     std::fstream m_file;
+    int m_size;
 };
 
 #endif //NESREX_INES_H

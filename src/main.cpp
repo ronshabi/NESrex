@@ -11,7 +11,7 @@ int main() {
     printf("Flag Z is: 0x%02x\n", c.z);
     printf("Flag N is: 0x%02x\n", c.n);
 
-    ines mario("../roms/mario1.nes");
+    ines mario("../roms/m1.nes");
 
 
     return 0;
