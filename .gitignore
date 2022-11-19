@@ -1,5 +1,7 @@
 .idea/
 roms/
+build/
+
 ### C++ template
 # Prerequisites
 *.d
