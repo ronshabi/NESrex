@@ -5,6 +5,7 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include "cpu.h"
 
 class ines {
 public:
@@ -18,7 +19,8 @@ private:
     int m_size = -1;
 
     void validate();
-    std::vector<uint8_t> read(int offset, int size);
+    std::vector<u8> read(int offset, int size);
+    u8 read(int offset);
 };
 
 #endif //NESREX_INES_H

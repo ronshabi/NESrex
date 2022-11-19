@@ -2,6 +2,7 @@
 #define NESREX_INSTRUCTIONS_H
 
 #include "instruction.h"
+#include "defs.h"
 
 namespace instructions {
 constexpr instruction AND_IMM = instruction(0x29, 2, 2, "AND");

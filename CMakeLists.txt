@@ -8,11 +8,8 @@ add_executable(
         src/main.cpp
         src/cpu.cpp
         src/cpu.h
-        src/mmu.cpp
-        src/mmu.h
         src/instruction.h
-        src/instructions.cpp
         src/instructions.h
         src/ines.cpp
         src/ines.h
-        )
+        src/defs.h)

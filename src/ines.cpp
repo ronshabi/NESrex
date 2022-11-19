@@ -1,4 +1,5 @@
 #include "ines.h"
+#include "cpu.h"
 
 // FIXME: remove me and all of my instances
 #define Log(msg) std::cout << msg << std::endl;
@@ -36,10 +37,10 @@ ines::~ines() {
 }
 
 // Read (endian neutral)
-std::vector<uint8_t> ines::read(int offset, int size) {
+std::vector<u8> ines::read(int offset, int size) {
     // validate offset
     if (offset <= m_size && offset >= 0) {
-        std::vector<uint8_t> ret;
+        std::vector<u8> ret;
         char current[1];
 
         for (int i = 0; i < size; i++) {
@@ -51,16 +52,30 @@ std::vector<uint8_t> ines::read(int offset, int size) {
         return ret;
     } else {
         TempException("Wrong file offset chosen");
-        return std::vector<uint8_t> {0xff};
+        return std::vector<u8> {0xff};
     }
 }
+
+u8 ines::read(int offset)
+{
+    if (offset <= m_size && offset >= 0) {
+        char current[1];
+        m_file.seekg(offset, std::ios::beg);
+        m_file.read(current, 1);
+        return *current;
+    } else {
+        TempException("Wrong file offset chosen");
+        return -1;
+    }
+}
+
 
 // This function validates the iNes File.
 void ines::validate() {
     // Validate header
-    std::vector<uint8_t> header = read(0, 4);
+    std::vector<u8> header = read(0, 4);
 
-    if (header == std::vector<uint8_t>{0x4e, 0x45, 0x53, 0x1a}) {
+    if (header == std::vector<u8>{0x4e, 0x45, 0x53, 0x1a}) {
         Log("valid");
         m_valid = true;
     }

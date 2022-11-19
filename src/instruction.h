@@ -1,18 +1,18 @@
 #ifndef NESREX_INSTRUCTION_H
 #define NESREX_INSTRUCTION_H
 
-#include <cstdint>
 #include <string>
+#include "defs.h"
 
 struct instruction {
-    const uint8_t opcode;
-    const uint8_t bytes;
-    const uint8_t cycles;
-    const char   *name;
+  const u8 opcode;
+  const u8 bytes;
+  const u8 cycles;
+  const char* name;
 
-    constexpr instruction(uint8_t p_opcode, uint8_t p_bytes, uint8_t p_cycles,
-                          const char *p_name)
-        : opcode{p_opcode}, bytes{p_bytes}, cycles{p_cycles}, name{p_name} {};
+  constexpr instruction(u8 p_opcode, u8 p_bytes, u8 p_cycles,
+          const char* p_name)
+          :opcode{p_opcode}, bytes{p_bytes}, cycles{p_cycles}, name{p_name} { };
 };
 
 #endif // NESREX_INSTRUCTION_H

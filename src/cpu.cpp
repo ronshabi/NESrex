@@ -1,6 +1,5 @@
 #include "cpu.h"
 #include "instructions.h"
-#include <iostream>
 
 cpu::cpu()
 {
@@ -16,61 +15,61 @@ void cpu::setFlag(bool& flag, bool to)
     flag = to;
 }
 
-uint8_t cpu::deref(uint16_t address)
+u8 cpu::deref(u16 address)
 {
     return m_memory[address];
 }
 
-uint8_t cpu::getImmediateByte()
+u8 cpu::getImmediateByte()
 {
     return m_memory[m_pc+1];
 }
 
-uint16_t cpu::getImmediateWord()
+u16 cpu::getImmediateWord()
 {
     return m_memory[m_pc+1] >> 8 | m_memory[m_pc+2];
 }
 
-uint8_t cpu::derefImmediateByte()
+u8 cpu::derefImmediateByte()
 {
     return deref(getImmediateByte());
 }
 
-uint8_t cpu::derefZeroPage()
+u8 cpu::derefZeroPage()
 {
     return derefImmediateByte();
 }
 
-uint8_t cpu::derefZeroPageX()
+u8 cpu::derefZeroPageX()
 {
-    uint8_t index = x+getImmediateByte();
+    u8 index = x+getImmediateByte();
     return deref(index);
 }
-uint16_t cpu::derefAbsoluteX()
+u16 cpu::derefAbsoluteX()
 {
-    uint16_t index = y+getImmediateByte();
-    return deref(index);
-}
-
-uint16_t cpu::derefAbsoluteY()
-{
-    uint16_t index = y+getImmediateByte();
+    u16 index = y+getImmediateByte();
     return deref(index);
 }
 
-uint8_t cpu::derefIndirectX()
+u16 cpu::derefAbsoluteY()
 {
-    uint8_t index = x+getImmediateByte();
+    u16 index = y+getImmediateByte();
     return deref(index);
 }
 
-uint8_t cpu::derefIndirectY()
+u8 cpu::derefIndirectX()
 {
-    uint16_t index = y+getImmediateByte();
+    u8 index = x+getImmediateByte();
     return deref(index);
 }
 
-void cpu::execute(uint8_t opcode)
+u8 cpu::derefIndirectY()
+{
+    u16 index = y+getImmediateByte();
+    return deref(index);
+}
+
+void cpu::execute(u8 opcode)
 {
     switch (opcode) {
     case instructions::AND_IMM.opcode:a &= getImmediateByte();
