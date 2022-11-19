@@ -13,17 +13,8 @@ public:
     ~ines();
 
 private:
-    std::string m_path;
-    std::fstream m_file;
-    bool m_valid = false;
-    int m_size = -1;
-    u8 m_16kbRomBanks;
-    u8 m_8kbVRomMBanks;
-    enum class m_mirroringMode { vertical, horizontal };
-    bool m_batteryPackedRam;
-    bool m_trainer;
-    bool m_fourScreenVRamLayout;
-    enum class m_mapperType {
+    enum class m_MIRRORING_MODES : u8 { vertical = 1, horizontal = 0 };
+    enum class m_MAPPER_TYPES : u8 {
       None = 0,
       Nintendo_MMC1 = 1,
       CNROM_Switch = 2,
@@ -64,9 +55,22 @@ private:
       Nina6 = 81,
       Pirate_HK_SF3 = 91,
     };
+    enum class m_ENCODING_SYSTEMS { PAL = 1, NTSC = 0};
+
+    std::string m_path;
+    std::fstream m_file;
+    bool m_valid = false;
+    int m_size = -1;
+    u8 m_16kbRomBanks;
+    u8 m_8kbVRomMBanks;
+    u8 m_mirroringMode;
+    bool m_batteryPackedRam;
+    bool m_trainer;
+    bool m_fourScreenVRamLayout;
+    u8 m_mapperType;
+    u8 m_encoding;
     bool m_vsSystemCartridges;
     u8 m_8kbRamBanks;
-    enum class m_encodingSystem { PAL, NTSC };
 
     void validate();
     std::vector<u8> read(int offset, int size);
