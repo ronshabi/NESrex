@@ -5,7 +5,9 @@
 #define Log(msg) std::cout << msg << std::endl;
 // FIXME: replace me with an exception
 #define TempException(msg) std::cerr << msg << std::endl
+// FIXME: Just remove me
 #define PrintHex(hex) printf("%02x ", hex)
+
 ines::ines(std::string path)
         :m_path{path}
 {
@@ -21,8 +23,9 @@ ines::ines(std::string path)
 
         if (m_valid) {
 
-        } else {
-            TempException("File isn't valid");
+        }
+        else {
+            TempException("File isn't an iNES file");
         }
 
     }
@@ -31,52 +34,54 @@ ines::ines(std::string path)
     }
 }
 
-ines::~ines() {
+ines::~ines()
+{
     // close the file
     m_file.close();
 }
 
 // Read (endian neutral)
-std::vector<u8> ines::read(int offset, int size) {
+std::vector<u8> ines::read(int offset, int size)
+{
     // validate offset
-    if (offset <= m_size && offset >= 0) {
+    if (size<=m_size && offset>=0 && offset<=m_size) {
         std::vector<u8> ret;
         char current[1];
 
-        for (int i = 0; i < size; i++) {
-            m_file.seekg(offset+i, std::ios::beg);
+        for (int i = 0; i<size; i++) {
+            m_file.seekg(0+i, std::ios::beg);
             m_file.read(current, 1);
             ret.insert(ret.cend(), *current);
         }
 
         return ret;
-    } else {
+    }
+    else {
         TempException("Wrong file offset chosen");
-        return std::vector<u8> {0xff};
+        return std::vector<u8>{0xff};
     }
 }
 
-u8 ines::read(int offset)
+u8 ines::readByte(int offset)
 {
-    if (offset <= m_size && offset >= 0) {
+    if (offset<=m_size && offset>=0) {
         char current[1];
         m_file.seekg(offset, std::ios::beg);
         m_file.read(current, 1);
         return *current;
-    } else {
+    }
+    else {
         TempException("Wrong file offset chosen");
         return -1;
     }
 }
 
-
 // This function validates the iNes File.
-void ines::validate() {
+void ines::validate()
+{
     // Validate header
     std::vector<u8> header = read(0, 4);
+    bool valid_header = (header==std::vector<u8>{0x4e, 0x45, 0x53, 0x1a});
 
-    if (header == std::vector<u8>{0x4e, 0x45, 0x53, 0x1a}) {
-        Log("valid");
-        m_valid = true;
-    }
+    m_valid = (valid_header);
 }
