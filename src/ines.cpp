@@ -25,17 +25,18 @@ ines::ines(std::string path)
             // Get header contents
             int headerByte6 = readByte(6);
             int headerByte7 = readByte(7);
-            int mapper_hi, mapper_low;
+            int mapper_high, mapper_low;
 
             m_mirroringMode = (headerByte6 >> 7 ) & 0x1;
             m_batteryPackedRam = (headerByte6 >> 6) & 0x1;
             m_trainer = (headerByte6 >> 5) & 0x1;
-            mapper_low = (headerByte6 >> 4) & 0b00001111;
             m_vsSystemCartridges = (headerByte7 >> 7 ) & 0x1;
             m_8kbRamBanks = readByte(8);
-            mapper_low = (headerByte7 >> 4) & 0b00001111;
-            m_mapperType = mapper_hi << 4 | mapper_low;
             m_encoding = (readByte(9) >> 7) & 0x1;
+
+            mapper_low = (headerByte6 >> 4) & 0b00001111;
+            mapper_high = (headerByte7 >> 4) & 0b00001111;
+            m_mapperType = mapper_high << 4 | mapper_low;
         }
         else {
             TempException("File isn't an iNES file");
