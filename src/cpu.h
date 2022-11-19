@@ -29,8 +29,8 @@ private:
     uint16_t m_sp = 0;
     std::array<u8, 0xffff> m_memory;
 
-    inline u8 getImmediateByte();
-    inline uint16_t getImmediateWord();
+    inline u8 immediateByte();
+    inline uint16_t immediateWord();
 
     inline u8 deref(uint16_t address);
     inline u8 derefImmediateByte();

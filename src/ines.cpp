@@ -44,7 +44,7 @@ ines::ines(std::string path)
 
     }
     else {
-        Log("Error opening the file, does it exist?");
+        TempException("Error opening the file, does it exist?");
     }
 }
 

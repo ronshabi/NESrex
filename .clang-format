@@ -8,3 +8,8 @@ AlignConsecutiveDeclarations: Consecutive
 AlignAfterOpenBracket: true
 AllowShortFunctionsOnASingleLine: None
 AllowShortBlocksOnASingleLine: Never
+AlignConsecutiveBitFields: Consecutive
+AlignConsecutiveAssignments: Consecutive
+AlignArrayOfStructures: Left
+AlignConsecutiveMacros: Consecutive
+AlignEscapedNewlines: Left

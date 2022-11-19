@@ -20,19 +20,19 @@ u8 cpu::deref(u16 address)
     return m_memory[address];
 }
 
-u8 cpu::getImmediateByte()
+u8 cpu::immediateByte()
 {
     return m_memory[m_pc+1];
 }
 
-u16 cpu::getImmediateWord()
+u16 cpu::immediateWord()
 {
     return m_memory[m_pc+1] >> 8 | m_memory[m_pc+2];
 }
 
 u8 cpu::derefImmediateByte()
 {
-    return deref(getImmediateByte());
+    return deref(immediateByte());
 }
 
 u8 cpu::derefZeroPage()
@@ -42,37 +42,37 @@ u8 cpu::derefZeroPage()
 
 u8 cpu::derefZeroPageX()
 {
-    u8 index = x+getImmediateByte();
+    u8 index = x+immediateByte();
     return deref(index);
 }
 u16 cpu::derefAbsoluteX()
 {
-    u16 index = y+getImmediateByte();
+    u16 index = y+immediateByte();
     return deref(index);
 }
 
 u16 cpu::derefAbsoluteY()
 {
-    u16 index = y+getImmediateByte();
+    u16 index = y+immediateByte();
     return deref(index);
 }
 
 u8 cpu::derefIndirectX()
 {
-    u8 index = x+getImmediateByte();
+    u8 index = x+immediateByte();
     return deref(index);
 }
 
 u8 cpu::derefIndirectY()
 {
-    u16 index = y+getImmediateByte();
+    u16 index = y+immediateByte();
     return deref(index);
 }
 
 void cpu::execute(u8 opcode)
 {
     switch (opcode) {
-    case instructions::AND_IMM.opcode:a &= getImmediateByte();
+    case instructions::AND_IMM.opcode:a &= immediateByte();
         setFlag(z, !a);
         setFlag(n, a >> 8);
         break;
@@ -84,7 +84,7 @@ void cpu::execute(u8 opcode)
         setFlag(z, !a);
         setFlag(n, a >> 8);
         break;
-    case instructions::AND_ABS.opcode:a &= getImmediateWord();
+    case instructions::AND_ABS.opcode:a &= immediateWord();
         setFlag(z, !a);
         setFlag(n, a >> 8);
         break;
